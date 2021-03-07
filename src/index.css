@@ -1,5 +1,9 @@
-body {
+*{
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +14,118 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.landing{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.landing-con{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 450px;
+  height: 300px;
+  box-shadow: 0px 3px 3px #777;
+}
+
+.landing-btn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.home-form{
+  padding: 20px 30px 30px 30px;
+  box-shadow: 0px 3px 3px #777;
+  position: relative;
+}
+
+.send-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.success{
+  background-color: green;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 302px;
+  right: 30px;
+  font-size: 12.2px;
+}
+
+.error{
+  background-color: red;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 302px;
+  right: 30px;
+  font-size: 12.2px;
+}
+
+.view-msg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.msg-con{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 550px;
+  height: 300px;
+  box-shadow: 0px 3px 3px #777;
+}
+
+.delete{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.delete-con{
+  padding: 20px 30px 30px 30px;
+  box-shadow: 0px 3px 3px #777;
+  position: relative;
+}
+
+.delete-success{
+  background-color: green;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 133px;
+  right: 30px;
+  font-size: 12.2px;
+}
+
+.delete-error{
+  background-color: red;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 133px;
+  right: 30px;
+  font-size: 12.2px;
 }
