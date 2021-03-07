@@ -23,7 +23,7 @@ const Home = () =>{
                     password,
                     targetMail: email,
                     message,
-                    targetURL: 'http://localhost:3000/message'
+                    targetURL: 'https://secret-msg-app.netlify.app/message'
                 })
             })
             if(res.status===200){
