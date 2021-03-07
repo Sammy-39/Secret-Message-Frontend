@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Secret Message App
+
+To send secret message via email with secret key and password. To delete the message using secret key and password.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
