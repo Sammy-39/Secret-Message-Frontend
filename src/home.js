@@ -23,7 +23,7 @@ const Home = () =>{
                     password,
                     targetMail: email,
                     message,
-                    targetURL: 'https://secret-msg-app.netlify.app/message'
+                    targetURL: 'https://secret-message-app.herokuapp.com/message'
                 })
             })
             if(res.status===200){
