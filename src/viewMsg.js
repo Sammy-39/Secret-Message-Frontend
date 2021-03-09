@@ -10,7 +10,6 @@ const ViewMsg = () =>{
         try {
             const res = await fetch(`https://secret-message-backend.herokuapp.com/message-by-id/${params.rs}`)
             const resData = await res.json()
-            console.log(res.status)
             if(res.status===200){
                 setMsg(resData.message)
             }

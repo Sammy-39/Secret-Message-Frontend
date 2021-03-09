@@ -9,6 +9,7 @@ const Home = () =>{
     const [message,setMessage] = useState("")
     const [showSuccess,setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
+    const [err,setError] = useState('')
 
     const history = useHistory()
 
@@ -36,8 +37,16 @@ const Home = () =>{
                     setShowSuccess(false)
                 },2000)
             }
+            if(res.status===422){
+                setError('Secret key in use!')
+                setShowError(true)
+                setTimeout(()=>{
+                    setShowError(false)
+                },2000)
+            }
         } 
         catch(err){
+            setError('Error Sending Msg!')
             setShowError(true)
             setTimeout(()=>{
                 setShowError(false)
@@ -74,7 +83,7 @@ const Home = () =>{
                     </div>
                     <div className="send-btn">
                         { showSuccess && <p className="success"> Message Sent! </p>}
-                        { showError && <p className="error"> Error Sending Msg! </p>}
+                        { showError && <p className="error"> {err} </p>}
                         <button type="submit" className="btn btn-success mr-3">Send</button>
                         <button type="button" className="btn btn-warning" onClick={()=>history.push('/')}>Back</button>
                     </div>
