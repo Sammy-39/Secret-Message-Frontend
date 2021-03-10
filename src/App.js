@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Landing from './landing'
 import Home from './home'
 import ViewMsg from './viewMsg'
-import Delete from './delete';
+import Msg from './msg';
 
 function App() {
   return (
@@ -15,10 +15,10 @@ function App() {
         <Route path='/home'>
           <Home />
         </Route>
-        <Route path='/delete'>
-          <Delete />
+        <Route path='/msg'>
+          <Msg />
         </Route>
-        <Route path='/message/:rs'>
+        <Route path='/message'>
           <ViewMsg />
         </Route>
       </Switch>
