@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useHistory } from "react-router"
 
+import Loader from './loader'
+
 const Home = () =>{
 
     const [key,setKey] = useState("")
@@ -10,12 +12,16 @@ const Home = () =>{
     const [showSuccess,setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
     const [err,setError] = useState('')
+    const [disable,setDisable] = useState(false)
+    const [showLoader,setShowLoader] = useState(false)
 
     const history = useHistory()
 
     const handleSend = async (e) =>{
         e.preventDefault()
         try {
+            setDisable(true)
+            setShowLoader(true)
             const res = await fetch('https://secret-message-backend.herokuapp.com/create-message',{
                 method: 'POST',
                 headers: {"Content-Type":"application/json"},
@@ -27,6 +33,8 @@ const Home = () =>{
                     targetURL: 'https://secret-message-app.herokuapp.com/message'
                 })
             })
+            setDisable(false)
+            setShowLoader(false)
             if(res.status===200){
                 setShowSuccess(true)
                 setPassword('')
@@ -57,35 +65,36 @@ const Home = () =>{
     return(
         <div className='home'>
             <div className='home-form'>
+                { showLoader && <Loader/> }
                 <h4 className='mb-4'> Secret Message </h4>
                 <form onSubmit={e=>handleSend(e)}>
                     <div className="form-row mb-3">
                         <div className="col">
-                            <input type="text" className="form-control" placeholder="Secret Key" required
+                            <input type="text" className="form-control" placeholder="Secret Key" required disabled={disable}
                             value={key} onChange={e=>setKey(e.target.value)} />
                         </div>
                         <div className="col">
-                            <input type="password" className="form-control" placeholder="Password" required
+                            <input type="password" className="form-control" placeholder="Password" required disabled={disable}
                             value={password} onChange={e=>setPassword(e.target.value)} />
                         </div>
                     </div>
                     <div className="form-row mb-3">
                         <div className="col">
-                            <input type="email" className="form-control" placeholder="Send to: Email" required
+                            <input type="email" className="form-control" placeholder="Send to: Email" required disabled={disable}
                             value={email} onChange={e=>setEmail(e.target.value)} />
                         </div>
                     </div>
                     <div className="form-row mb-3">
                         <div className="col">  
-                            <textarea className="form-control" rows="3" placeholder="Message" required
+                            <textarea className="materialize-textarea"  placeholder="Message" required disabled={disable}
                             value={message} onChange={e=>setMessage(e.target.value)} />
                         </div>
                     </div>
                     <div className="send-btn">
                         { showSuccess && <p className="success"> Message Sent! </p>}
                         { showError && <p className="error"> {err} </p>}
-                        <button type="submit" className="btn btn-success mr-3">Send</button>
-                        <button type="button" className="btn btn-warning" onClick={()=>history.push('/')}>Back</button>
+                        <button type="submit" className="btn btn-success mr-3" disabled={disable}>Send</button>
+                        <button type="button" className="btn btn-warning" onClick={()=>history.push('/')} disabled={disable}>Back</button>
                     </div>
                 </form>
             </div>

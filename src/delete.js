@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useHistory } from "react-router"
 
+import Loader from "./loader"
+
 const Delete = () =>{
 
     const [key,setKey] = useState("")
@@ -8,12 +10,16 @@ const Delete = () =>{
     const [showSuccess,setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
     const [error,setError] = useState('Error deleting Msg!')
+    const [disable,setDisable] = useState(false)
+    const [showLoader,setShowLoader] = useState(false)
 
     const history = useHistory()
 
     const handleDelete = async (e) =>{
         e.preventDefault()
         try {
+            setDisable(true)
+            setShowLoader(true)
             const res = await fetch('https://secret-message-backend.herokuapp.com/delete-message',{
                 method: 'DELETE',
                 headers: {"Content-Type":"application/json"},
@@ -22,6 +28,8 @@ const Delete = () =>{
                    secretKey: key
                 })
             })
+            setDisable(false)
+            setShowLoader(false)
             if(res.status===200){
                 setShowSuccess(true)
                 setPassword('')
@@ -56,23 +64,24 @@ const Delete = () =>{
     return(
         <div className='delete'>
             <div className='delete-con'>
+                { showLoader && <Loader/> }
                 <h4 className='mb-4'> Secret Message </h4>
                 <form onSubmit={e=>handleDelete(e)}>
                     <div className="form-row mb-3">
                         <div className="col">
-                            <input type="text" className="form-control" placeholder="Secret Key" required
+                            <input type="text" className="form-control" placeholder="Secret Key" required disabled={disable}
                             value={key} onChange={e=>setKey(e.target.value)} />
                         </div>
                         <div className="col">
-                            <input type="password" className="form-control" placeholder="Password" required
+                            <input type="password" className="form-control" placeholder="Password" required disabled={disable}
                             value={password} onChange={e=>setPassword(e.target.value)} />
                         </div>
                     </div>
                     <div className="send-btn">
-                        { showSuccess && <p className="delete-success"> Message Deleted </p>}
+                        { showSuccess && <p className="delete-success"> Message Deleted! </p>}
                         { showError && <p className="delete-error"> {error} </p>}
-                        <button type="submit" className="btn btn-danger mr-3">Delete</button>
-                        <button type="button" className="btn btn-warning" onClick={()=>history.push('/')}>Back</button>
+                        <button type="submit" className="btn btn-danger mr-3" disabled={disable}>Delete</button>
+                        <button type="button" className="btn btn-warning" onClick={()=>history.push('/')} disabled={disable}>Back</button>
                     </div>
                 </form>
             </div>

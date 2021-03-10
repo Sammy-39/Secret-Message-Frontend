@@ -38,11 +38,18 @@ code {
   justify-content: space-between;
 }
 
+.loader{
+  position: absolute;
+  top: -5px;
+  left: 0;
+}
+
 .home{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
+  position: relative;
 }
 
 .home-form{
@@ -114,7 +121,7 @@ code {
   color: white;
   border-radius: 10px;
   position: absolute;
-  top: 133px;
+  top: 180px;
   right: 30px;
   font-size: 12.2px;
 }
@@ -125,7 +132,7 @@ code {
   color: white;
   border-radius: 10px;
   position: absolute;
-  top: 133px;
+  top: 150px;
   right: 30px;
   font-size: 12.2px;
 }
