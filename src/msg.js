@@ -26,7 +26,7 @@ const Msg = () =>{
         try {
             setDisable(true)
             setShowLoader(true)
-            const res = await fetch(`https://secret-message-backend.herokuapp.com/${key}/${password}`)
+            const res = await fetch(`https://secret-message-backend.herokuapp.com/message-by-key/${key}/${password}`)
             const resData = await res.json()
             setDisable(false)
             setShowLoader(false)
